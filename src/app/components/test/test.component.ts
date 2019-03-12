@@ -16,6 +16,10 @@ export class TestComponent implements OnInit {
       .subscribe( res => console.log(res)
       );
 
+      this._moviesS.buscarPelicula('casa')
+        .subscribe( res => console.log(res)
+         );
+
   }
 
 

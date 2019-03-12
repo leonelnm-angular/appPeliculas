@@ -1,0 +1,39 @@
+<article class="jumbotron jumbotron-fluid">
+    <article class="container">
+        <h1 class="display-3">Películas</h1>
+        <p class="lead">Una aplicación web que muestra las últimas películas en cartelera.</p>
+    </article>
+</article>
+
+<section>
+    <h2>Cartelera</h2>
+    <hr>
+    <div class="row">
+        <div class="col-md-2" *ngFor="let p of p_cartelera | slice:0:6">
+            <img [src]="p.poster_path | imgMovies" alt="">
+        </div>
+    </div>
+
+</section>
+
+<section>
+    <h2>Populares</h2>
+    <hr>
+    <div class="row">
+        <div class="col-md-2" *ngFor="let p of p_cartelera | slice:0:6">
+            <img [src]="p.poster_path | imgMovies" alt="">
+        </div>
+    </div>
+
+</section>
+
+<section>
+    <h2>Infantiles</h2>
+    <hr>
+    <div class="row">
+        <div class="col-md-2" *ngFor="let p of p_cartelera | slice:0:6">
+            <img [src]="p.poster_path | imgMovies" alt="">
+        </div>
+    </div>
+
+</section>

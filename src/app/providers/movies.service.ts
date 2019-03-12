@@ -18,11 +18,54 @@ export class MoviesService {
 
     const url = `${ this.urlMoviedb }/discover/movie?api_key=${ this.apikey }&sort_by=popularity.desc&callback=JSONP_CALLBACK`;
 
-console.log(url);
+    console.log(url);
 
 
     return this.http.jsonp( url, '' )
       .pipe (map ( res => res));
 
   }
+
+
+  buscarPelicula(texto: string) {
+
+    const url = `${ this.urlMoviedb }/search/movie?api_key=${ this.apikey }&query=${ texto }&callback=JSONP_CALLBACK`;
+
+    return this.http.jsonp( url, '')
+      .pipe ( map(
+        res => res
+      ));
+
+  }
+
+  getCartelera() {
+
+    const desde = new Date();
+    const hasta = new Date();
+    hasta.setDate( hasta.getDate() + 7 );
+
+    let desdeStr = `${ desde.getFullYear() }-${ desde.getMonth()+1 }-${ desde.getDate() }`;
+    let hastaStr = `${ hasta.getFullYear() }-${ hasta.getMonth()+1 }-${ hasta.getDate() }`;
+
+    const url = `${ this.urlMoviedb }/discover/movie?api_key=${ this.apikey }&sort_by=popularity.desc&page=1&primary_release_date.gte=${ desdeStr }&primary_release_date.lte=${ hastaStr }&callback=JSONP_CALLBACK`;
+
+    return this.http.jsonp( url, '')
+      .pipe ( map(
+        res => res['results']
+      ));
+
+  }
+
+  getPopulares() {
+
+    const url = ``;
+
+  }
+
+  getInfantiles() {
+
+    const url = ``;
+
+  }
+
 }

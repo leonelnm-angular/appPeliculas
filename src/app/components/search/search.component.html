@@ -11,8 +11,6 @@
     </div>
 </div>
 
-
-
 <div class="animated fast fadeIn">
     <div class="view view-first animated fadeIn" *ngFor="let p of peliculas" (click)="getDetail(p.id, 'search')">
         <img [src]="p.poster_path | imgMovies" [alt]="p.title" />

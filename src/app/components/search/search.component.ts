@@ -36,15 +36,15 @@ export class SearchComponent implements OnInit {
   buscarPelicula( texto: string ){
     this.peliculas = [];
     this.ready = false;
-    this.content = false;
+    // this.content = false;
     let t: string = texto.trim();
     if (texto.length > 0) {
       this._movieS.buscarPelicula( t ).subscribe (data => {
         this.peliculas = data;
+        this.content = false;
         if (this.peliculas.length > 0) {
           this.content = true;
         }
-        
       });
       this.ready = true;
     }

@@ -4,12 +4,24 @@
     </div>
 </div>
 
-<div class="card-columns m-5">
+<!-- <div class="card-columns m-5">
     <div class="card" *ngFor="let p of peliculas">
-        <img [src]="p.poster_path | imgMovies" class="card-img-top" alt="p.title">
+        <img [src]="p.poster_path | imgMovies" class="card-img-top" [alt]="p.title">
         <div class="card-body">
             <h5 class="card-title">{{ p.title }}</h5>
             <p class="card-text">{{ p.overview }}</p>
+        </div>
+    </div>
+</div> -->
+
+
+<div>
+    <div class="view view-first" *ngFor="let p of peliculas">
+        <img [src]="p.poster_path | imgMovies" [alt]="p.title" />
+        <div class="mask">
+            <h2>{{ p.title }}</h2>
+            <p>{{ p.overview | sizeParagraph }}</p>
+            <a href="#" class="info">Read More</a>
         </div>
     </div>
 </div>

@@ -13,6 +13,7 @@ import { MovieComponent } from './components/movie/movie.component';
 // Pipes
 import { ImgMoviesPipe } from './pipes/img-movies.pipe';
 import { SizeParagraphPipe } from './pipes/size-paragraph.pipe';
+import { ImgMovieBigPipe } from './pipes/img-movie-big.pipe';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SizeParagraphPipe } from './pipes/size-paragraph.pipe';
     MovieComponent,
     ImgMoviesPipe,
     SizeParagraphPipe,
+    ImgMovieBigPipe,
   ],
   imports: [
     BrowserModule,

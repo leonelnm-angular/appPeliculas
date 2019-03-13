@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+
+  public empty:boolean = false;
+
   constructor(
     private router: Router,
   ) { }
@@ -16,7 +19,12 @@ export class NavbarComponent implements OnInit {
   }
 
   buscarPeli( texto: string) {
-    this.router.navigate([ '/search', texto ]);
+    if ( texto.length > 0 ) {
+      this.router.navigate([ '/search', texto ]);
+      this.empty = false;
+    } else {
+      this.empty = true;
+    }
   }
 
 }

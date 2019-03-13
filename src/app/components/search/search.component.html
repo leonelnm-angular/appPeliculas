@@ -15,13 +15,13 @@
 </div> -->
 
 
-<div>
-    <div class="view view-first" *ngFor="let p of peliculas">
+<div class="animated fast fadeIn">
+    <div class="view view-first animated fadeIn" *ngFor="let p of peliculas" (click)="getDetail(p.id)">
         <img [src]="p.poster_path | imgMovies" [alt]="p.title" />
         <div class="mask">
             <h2>{{ p.title }}</h2>
             <p>{{ p.overview | sizeParagraph }}</p>
-            <a href="#" class="info">Read More</a>
+            <a (click)="getDetail(p.id)" class="info">Read More</a>
         </div>
     </div>
 </div>

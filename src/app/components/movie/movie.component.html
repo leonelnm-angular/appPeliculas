@@ -1,3 +1,16 @@
-<p>
-  movie works!
-</p>
+<div class="card mb-3" *ngIf="loading">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img [src]="movie.poster_path | imgMovieBig" class="card-img" alt="movie.title">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body animated fadeIn fast">
+                <h1 class="card-title">{{ movie.title }}</h1>
+                <p class="card-text text-justify">{{ movie.overview }} </p>
+                <p class="card-text"> <strong>Estreno </strong><span class="badge badge-pill badge-info">{{ movie.release_date }}</span></p>
+                <p class="card-text"> <strong>Puntuación </strong><span class="badge badge-pill badge-info">{{ movie.vote_average }}</span></p>
+                <p class="card-text"> <strong>Duración </strong><span class="badge badge-pill badge-info">{{ movie.runtime }}</span></p>
+            </div>
+        </div>
+    </div>
+</div>

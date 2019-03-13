@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MoviesService } from 'src/app/providers/movies.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class SearchComponent implements OnInit {
   public peliculas: any[] =[];
 
   constructor(  private activeRoute: ActivatedRoute,
+                private route: Router,
                 private _movieS: MoviesService) { 
 
     this.activeRoute.params
@@ -20,7 +21,7 @@ export class SearchComponent implements OnInit {
         this.texto = params['texto'];
     })
 
-    if (this.texto != null) {
+    if (this.texto.length > 0) {
       this._movieS.buscarPelicula( this.texto )
         .subscribe( data => (
           this.peliculas = data,
@@ -38,6 +39,12 @@ export class SearchComponent implements OnInit {
     this.peliculas = [];
 
     this._movieS.buscarPelicula( texto ).subscribe (data => this.peliculas = data);
+  }
+
+  getDetail( id: string ) {
+    
+    this.route.navigate([ '/movie', id])
+    
   }
 
 }

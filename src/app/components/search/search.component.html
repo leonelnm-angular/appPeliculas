@@ -1,3 +1,15 @@
-<p>
-  search works!
-</p>
+<div class="row">
+    <div class="col">
+        <input #pelicula type="text" (keyup)="buscarPelicula(pelicula.value)" class="form-control" placeholder="Buscar película...">
+    </div>
+</div>
+
+<div class="card-columns m-5">
+    <div class="card" *ngFor="let p of peliculas">
+        <img [src]="p.poster_path | imgMovies" class="card-img-top" alt="p.title">
+        <div class="card-body">
+            <h5 class="card-title">{{ p.title }}</h5>
+            <p class="card-text">{{ p.overview }}</p>
+        </div>
+    </div>
+</div>

@@ -13,27 +13,12 @@ export class MoviesService {
 
   constructor(  private http: HttpClient) { }
 
-
-  test() {
-
-    const url = `${ this.urlMoviedb }/discover/movie?api_key=${ this.apikey }&sort_by=popularity.desc&callback=JSONP_CALLBACK`;
-
-    console.log(url);
-
-
-    return this.http.jsonp( url, '' )
-      .pipe (map ( res => res));
-
-  }
-
-
   buscarPelicula(texto: string) {
 
     const url = `${ this.urlMoviedb }/search/movie?api_key=${ this.apikey }&query=${ texto }&callback=JSONP_CALLBACK`;
-
     return this.http.jsonp( url, '')
       .pipe ( map(
-        res => res
+        res => res['results']
       ));
 
   }
@@ -48,7 +33,6 @@ export class MoviesService {
     let hastaStr = `${ hasta.getFullYear() }-${ hasta.getMonth()+1 }-${ hasta.getDate() }`;
 
     const url = `${ this.urlMoviedb }/discover/movie?api_key=${ this.apikey }&sort_by=popularity.desc&page=1&primary_release_date.gte=${ desdeStr }&primary_release_date.lte=${ hastaStr }&callback=JSONP_CALLBACK`;
-
     return this.http.jsonp( url, '')
       .pipe ( map(
         res => res['results']
@@ -58,13 +42,33 @@ export class MoviesService {
 
   getPopulares() {
 
-    const url = ``;
+    const url = `${ this.urlMoviedb }/movie/popular?api_key=${ this.apikey }&callback=JSONP_CALLBACK`;
+    return this.http.jsonp( url, '')
+      .pipe (map (
+        res => res['results']
+      ))
 
   }
 
   getInfantiles() {
 
-    const url = ``;
+    const url = `${ this.urlMoviedb }/discover/movie?api_key=${ this.apikey }&sort_by=popularity.desc&certification.lte=G&callback=JSONP_CALLBACK`;
+    return this.http.jsonp( url, '')
+      .pipe (map (
+        res => res['results']
+      ))
+
+  }
+
+  getLatestMovie() {
+
+    const fecha = new Date();
+
+    const url = `${ this.urlMoviedb }/discover/movie?api_key=${ this.apikey }&primary_release_year=${ fecha.getFullYear() }&language=es&sort_by=vote_average.desc&callback=JSONP_CALLBACK`;
+    return this.http.jsonp( url, '')
+      .pipe (map (
+        res => res['results']
+      ))
 
   }
 

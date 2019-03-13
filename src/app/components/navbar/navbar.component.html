@@ -14,7 +14,7 @@
             </li>
         </ul>
         <div class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" placeholder="Search" aria-label="Search" #texto>
+            <input class="form-control mr-sm-2" placeholder="Search" aria-label="Search" #texto (keyup)="buscarPeli(texto.value)">
             <button (click)="buscarPeli(texto.value)" class="btn btn-outline-success my-2 my-sm-0">Search</button>
         </div>
     </div>

@@ -7,7 +7,7 @@ import { MovieComponent } from './components/movie/movie.component';
 const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'search', component: SearchComponent },
-    { path: 'search/:id', component: MovieComponent },
+    { path: 'search/:texto', component: SearchComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'home' }
 
 ];

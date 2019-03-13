@@ -1,15 +1,27 @@
-<article class="jumbotron jumbotron-fluid">
-    <article class="container">
-        <h1 class="display-3">Películas</h1>
-        <p class="lead">Una aplicación web que muestra las últimas películas en cartelera.</p>
-    </article>
+<article>
+    <h2>La mejor película del año {{ anio }} </h2>
+    <div class="mx-auto card mb-3 puntero" style="max-width: 60%;" *ngIf="p_latest">
+        <div class="row no-gutters">
+            <div class="col-sm-4">
+                <img [src]="p_latest[0].poster_path | imgMovies" class="card-img" [alt]="p_latest[0].original_title">
+            </div>
+            <div class="col-sm-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ p_latest[0].title }}</h5>
+                    <p class="card-text">{{ p_latest[0].overview }} </p>
+                    <p class="card-text">Popularity: <small class="badge badge-info">{{ p_latest[0].popularity }}</small></p>
+                    <p class="card-text">Estreno: <small class="badge badge-info">{{ p_latest[0].release_date }}</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
 </article>
 
 <section>
     <h2>Cartelera</h2>
     <hr>
     <div class="row">
-        <div class="col-md-2" *ngFor="let p of p_cartelera | slice:0:6">
+        <div class="col-sm-2 puntero imagenes" *ngFor="let p of p_cartelera | slice:0:6">
             <img [src]="p.poster_path | imgMovies" alt="">
         </div>
     </div>
@@ -20,7 +32,7 @@
     <h2>Populares</h2>
     <hr>
     <div class="row">
-        <div class="col-md-2" *ngFor="let p of p_cartelera | slice:0:6">
+        <div class="col-sm-2 puntero imagenes" *ngFor="let p of p_populares | slice:0:6">
             <img [src]="p.poster_path | imgMovies" alt="">
         </div>
     </div>
@@ -28,10 +40,10 @@
 </section>
 
 <section>
-    <h2>Infantiles</h2>
+    <h2>Infatiles</h2>
     <hr>
     <div class="row">
-        <div class="col-md-2" *ngFor="let p of p_cartelera | slice:0:6">
+        <div class="col-sm-2 puntero imagenes" *ngFor="let p of p_infantiles | slice:0:6">
             <img [src]="p.poster_path | imgMovies" alt="">
         </div>
     </div>

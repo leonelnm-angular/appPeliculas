@@ -19,8 +19,9 @@ export class NavbarComponent implements OnInit {
   }
 
   buscarPeli( texto: string) {
-    if ( texto.length > 0 ) {
-      this.router.navigate([ '/search', texto ]);
+    let t: string = texto.trim();
+    if ( t.length > 0 ) {
+      this.router.navigate([ 'search', t ]);
       this.empty = false;
     } else {
       this.empty = true;

@@ -1,4 +1,4 @@
-<article class="animated fast fadeIn">
+<article class="animated fast fadeIn" (click)="getDetail(p_latest[0].id)">
     <h2>La mejor película del año {{ anio }} </h2>
     <div class="mx-auto card mb-3 puntero" style="max-width: 60%;" *ngIf="p_latest">
         <div class="row no-gutters">
@@ -21,7 +21,7 @@
     <h2>Cartelera</h2>
     <hr>
     <div class="row">
-        <div class="col-sm-2 puntero imagenes" *ngFor="let p of p_cartelera | slice:0:6">
+        <div class="col-sm-2 puntero imagenes" *ngFor="let p of p_cartelera | slice:0:6" (click)="getDetail(p.id)">
             <img [src]="p.poster_path | imgMovies" alt="">
         </div>
     </div>
@@ -32,7 +32,7 @@
     <h2>Populares</h2>
     <hr>
     <div class="row">
-        <div class="col-sm-2 puntero imagenes" *ngFor="let p of p_populares | slice:0:6">
+        <div class="col-sm-2 puntero imagenes" *ngFor="let p of p_populares | slice:0:6" (click)="getDetail(p.id)">
             <img [src]="p.poster_path | imgMovies" alt="">
         </div>
     </div>
@@ -43,7 +43,7 @@
     <h2>Infatiles</h2>
     <hr>
     <div class="row">
-        <div class="col-sm-2 puntero imagenes" *ngFor="let p of p_infantiles | slice:0:6">
+        <div class="col-sm-2 puntero imagenes" *ngFor="let p of p_infantiles | slice:0:6" (click)="getDetail(p.id)">
             <img [src]="p.poster_path | imgMovies" alt="">
         </div>
     </div>

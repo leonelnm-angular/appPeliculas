@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from 'src/app/providers/movies.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,8 @@ export class HomeComponent implements OnInit {
 
   public anio = new Date().getFullYear();
 
-  constructor( private _movieS: MoviesService) { }
+  constructor( private _movieS: MoviesService,
+      private route: Router) { }
 
   ngOnInit() {
     this.getCartelera();
@@ -27,8 +29,8 @@ export class HomeComponent implements OnInit {
   getCartelera() {
     this._movieS.getCartelera()
       .subscribe( (data: any) => (
-        this.p_cartelera = data,
-        console.log(this.p_cartelera)
+        this.p_cartelera = data
+        // console.log(this.p_cartelera)
       ));
 
   }
@@ -52,14 +54,14 @@ export class HomeComponent implements OnInit {
   getLatestMovie() {
     this._movieS.getLatestMovie()
       .subscribe( data => (
-        this.p_latest = data,
-        console.log(this.p_latest)
-        
+        this.p_latest = data        
        ) )
 
   }
 
-  showDetail() {
+  getDetail( id: string ) {
+    
+    this.route.navigate([ '/movie', id])
     
   }
 

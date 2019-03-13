@@ -11,6 +11,8 @@ export class MoviesService {
   private apikey = '62b64b795d7c06d49c7b5866641527c6';
   private urlMoviedb = 'https://api.themoviedb.org/3';
 
+  peliculas: any[] = [];
+
   constructor(  private http: HttpClient) { }
 
   buscarPelicula(texto: string) {
@@ -18,7 +20,10 @@ export class MoviesService {
     const url = `${ this.urlMoviedb }/search/movie?api_key=${ this.apikey }&query=${ texto }&callback=JSONP_CALLBACK`;
     return this.http.jsonp( url, '')
       .pipe ( map(
-        res => res['results']
+        res => {
+          this.peliculas = res['results'];
+          return res['results']
+        }
       ));
 
   }

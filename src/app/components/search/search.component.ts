@@ -11,6 +11,9 @@ export class SearchComponent implements OnInit {
   
   private texto: string;
   public peliculas: any[] =[];
+  public ready: boolean = true;
+  public content: boolean = true;
+
 
   constructor(  private activeRoute: ActivatedRoute,
                 private route: Router,
@@ -19,17 +22,12 @@ export class SearchComponent implements OnInit {
     this.activeRoute.params
       .subscribe( params => {
         this.texto = params['texto'];
-    })
-
-    if (this.texto.length > 0) {
-      this._movieS.buscarPelicula( this.texto )
-        .subscribe( data => (
-          this.peliculas = data,
-          console.log(this.peliculas)
+        if (this.texto) {
+          this.buscarPelicula(this.texto);
           
-        ));      
-    }
-
+        }
+        
+    })
   }
 
   ngOnInit() {
@@ -37,11 +35,23 @@ export class SearchComponent implements OnInit {
 
   buscarPelicula( texto: string ){
     this.peliculas = [];
+    this.ready = false;
+    this.content = false;
+    let t: string = texto.trim();
+    if (texto.length > 0) {
+      this._movieS.buscarPelicula( t ).subscribe (data => {
+        this.peliculas = data;
+        if (this.peliculas.length > 0) {
+          this.content = true;
+        }
+        
+      });
+      this.ready = true;
+    }
 
-    this._movieS.buscarPelicula( texto ).subscribe (data => this.peliculas = data);
   }
 
-  getDetail( id: string ) {
+  getDetail( id: string) {
     
     this.route.navigate([ '/movie', id])
     

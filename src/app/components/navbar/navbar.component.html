@@ -14,12 +14,12 @@
             </li>
         </ul>
         <div class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" placeholder="Search" aria-label="Search" #texto (keyup)="buscarPeli(texto.value)">
-            <button (click)="buscarPeli(texto.value)" class="btn btn-outline-success my-2 my-sm-0">Search</button>
+            <input class="form-control mr-sm-2" placeholder="Search" aria-label="Search" #texto>
+            <button (click)="buscarPeli(texto.value)" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </div>
     </div>
 </nav>
 
-<div *ngIf="empty" class="alert alert-warning" role="alert">
-    A simple warning alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+<div *ngIf="empty" class="alert alert-warning text-center" role="alert">
+    Inserte <strong>texto</strong> para buscar
 </div>

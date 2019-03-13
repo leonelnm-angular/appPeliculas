@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { MoviesService } from 'src/app/providers/movies.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-movie',
@@ -11,25 +12,33 @@ export class MovieComponent implements OnInit {
 
   private id: string;
   public movie: any;
+  public page: string;
 
   public loading: boolean = false;
 
-  constructor( private activated: ActivatedRoute, private _ms: MoviesService) {
+  constructor( private activated: ActivatedRoute, private _ms: MoviesService, public location: Location) {
 
-    this.activated.params.subscribe( p => this.id=p['id']);
+    this.activated.params.subscribe( p => 
+      {
+        this.id = p['id'];
+      });
 
     this._ms.getDetail(this.id)
-      .subscribe( res  => (
-        this.movie = res,
-        console.log(this.movie),
+      .subscribe( res  => (        
+        this.movie = res,  
+        // console.log(this.movie),
+              
         this.loading = true
-      ));
-
-    
+        ));
 
   }
 
   ngOnInit() {
+  }
+
+
+  regresar() {
+    this.location.back();
   }
 
 }
